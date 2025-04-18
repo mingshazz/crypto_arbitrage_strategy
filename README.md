@@ -20,6 +20,7 @@ Capture arbitrage opportunities between two crypto exchanges by identifying and 
 ## Implementation Details
 ### Matching Logic
 + VWAP (Volume-Weighted Average Price) is computed for both sides using all matching price levels until available liquidity is exhausted or matching condition fails.
++ Matching price plevels refer to the case where buy price (bid) is greater than sell price (ask).
 + The trade proceeds only if:
   + VWAP spread > min_spread
   + volatility (high-low/close) < max_volatility on both exchanges
@@ -28,7 +29,7 @@ Capture arbitrage opportunities between two crypto exchanges by identifying and 
 ### Trade Execution
 + Trades are executed using available liquidity and the matching price levels.
 + Trade logs are recorded for each execution including:
-  + vTimestamp, direction, VWAPs, spread, cost, revenue, profit, volume traded
+  + Timestamp, direction, VWAPs, spread, cost, revenue, profit, volume traded
 
 ## Post-Trade Analysis
 The system includes an analyze_results function to generate insights from the trade results:
@@ -46,11 +47,11 @@ The system includes an analyze_results function to generate insights from the tr
 ### Exports:
 + Results DataFrame to CSV
 + Metrics summary to CSV
-+ Graphs exported as PNGs into the output/ folder
++ Graphs exported as PNGs into the output folder
 
 ## How to Use
-+ Prepare order book and bar data for both BNC and HB.
++ Prepare order book and bar data for both BNC and HB, place them in the same directory as main.py.
 + Configure thresholds: min_spread, max_volatility, and fee_rate
 + Run the backtest using backtest_arbitrage_with_bar_filter
 + Call analyze_results and plot_trades_analysis to evaluate performance
-+ Optional: Export metrics and logs for reporting
++ Export metrics and logs for reporting
