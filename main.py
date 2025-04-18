@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 import os
-import openpyxl
 import logging
 log = logging.getLogger(__name__)
 
@@ -153,7 +152,6 @@ def backtest_arbitrage_with_bar_filter(order_book_bnc, order_book_hb, bar_bnc, b
 
 def analyze_results(results_df):
     results_df = results_df.copy()
-    print(f"results_df {results_df}")
     results_df["timestamp"] = pd.to_datetime(results_df["timestamp"])
 
     # Cumulative profit
